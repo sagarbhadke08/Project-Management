@@ -20,14 +20,16 @@ function App() {
     });
   }
 
-  function handleAddProject(projectData){
-    setProjectState(prevSave=>{
+  function handleAddProject(projectData){// expected to get the project data here as parameter from the place where it is invoked
+    setProjectState(prevState=>{
 
       const newProject = {
        
             ...projectData,
-            id:Math.random()
-        };
+            id:Math.random()// enrich by adding an Id which will be importatnt for later to selecting a project
+                            // Id should be generated here so used math.random
+                // so these newProject is added to below to this projects[]--> projects:[...prevState.projects,newProject] array
+          };
       
       return{
         ...prevState,
@@ -36,10 +38,14 @@ function App() {
     });
   }
 
+  console.log(projectState);
+
   let content;
 
   if(projectState.selectedProjectId===null){
-    content=<NewProject/>
+    content=<NewProject onAdd={handleAddProject}/>
+    //4/12/2023
+    //*so now sethandleAddproject as a value to newly added onAdd prop on this NewProject Compinent
 
   }else if(projectState.selectedProjectId===undefined){
     content = <NoProjectSelected onStartAddProject={handleStartAddProject}/>

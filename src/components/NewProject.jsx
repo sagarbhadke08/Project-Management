@@ -2,7 +2,7 @@ import { useRef } from "react";
 
 import Input from "./Input";
 
-export default function NewProject() {
+export default function NewProject({ onAdd }) {
 
     const title = useRef();
 
@@ -11,12 +11,17 @@ export default function NewProject() {
     const dueDate = useRef();
 
     function handleSave() {
-            const enteredTitle = title.current.value;
-            const enteredDescription = description.current.value;
-            const enteredDueDate = dueDate.current.value;
-            
-            
+        const enteredTitle = title.current.value;
+        const enteredDescription = description.current.value;
+        const enteredDueDate = dueDate.current.value;
 
+        // Adding validation... 
+
+        onAdd({
+            title: enteredTitle,
+            description: enteredDescription,
+            dueDate: enteredDueDate
+        })// this object will pass to App as an argument to handleAddProject bcz we will now set handleAddProject
     }
 
     return (<div className="w-[35rem] mt-16">
