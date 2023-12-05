@@ -42,7 +42,7 @@ function App() {
     });
   }
 
-  console.log(projectState);
+  // console.log(projectState);
 
   let content;
 
