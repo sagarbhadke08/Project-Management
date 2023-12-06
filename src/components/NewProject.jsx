@@ -4,7 +4,7 @@ import Input from "./Input.jsx";
 import Modal from "./Modal.jsx";
 
 
-export default function NewProject({ onAdd }) {
+export default function NewProject({ onAdd, onCancel }) {
 
     const modal = useRef();
     const title = useRef();
@@ -38,15 +38,15 @@ export default function NewProject({ onAdd }) {
     return (
         <>
             <Modal ref={modal} buttonCaption="Okey">
-                <h2>Invalid Input</h2>
-                <p>Opps... Looks like you forgot ti enter value</p>
-                <p>Please make sure you provide a valid value for every input field.</p>
+                <h2 className="text-xl font-bold text-stone-700 my-4">Invalid Input</h2>
+                <p className="text-stone-600 mb-4">Opps... Looks like you forgot ti enter value</p>
+                <p className="text-stone-600 mb-4">Please make sure you provide a valid value for every input field.</p>
             </Modal>
             <div className="w-[35rem] mt-16">
                 <menu className="flex items-center justify-end
         gap-4 my-4">
                     <li>
-                        <button className="text-stone-500 hover:text-stone-900">Cancel</button>
+                        <button className="text-stone-500 hover:text-stone-900" onClick={onCancel}>Cancel</button>
                     </li>
                     <li>
                         <button className=" px-6 py-2 rounded-md bg-stone-800 text-stone-50
