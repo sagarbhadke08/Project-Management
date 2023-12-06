@@ -19,6 +19,14 @@ function App() {
       }
     });
   }
+  function handleCancelAddProject(){
+    setProjectState(prevState => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+      }
+    });
+  }
 
   function handleAddProject(projectData) {// expected to get the project data here as parameter from the place where it is invoked
     setProjectState(prevState => {
@@ -47,7 +55,7 @@ function App() {
   let content;
 
   if (projectState.selectedProjectId === null) {
-    content = <NewProject onAdd={handleAddProject} />
+    content = <NewProject onAdd={handleAddProject} onCancel={handleCancelAddProject} />
     //4/12/2023
     //*so now sethandleAddproject as a value to newly added onAdd prop on this NewProject Compinent
 
