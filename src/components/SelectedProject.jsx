@@ -1,11 +1,11 @@
-export default function SelectedProject({project}){
+export default function SelectedProject({ project }) {
 
-    const formattedDate = new Date(project.dueDate).toLocaleDateString('en-US',{
-        year:'numeric',
-        month:'short',
-        day:'numeric',
+    const formattedDate = new Date(project.dueDate).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
     });
-    return(
+    return (
         <div>
             <header className="pb-4 mb-4 border-b-2 border-stone-300">
                 <div className="flex items-center justify-between">
@@ -19,3 +19,4 @@ export default function SelectedProject({project}){
         </div>
     );
 }
+
