@@ -19,9 +19,9 @@ export default function ProjectsSideBar({
 
                     let cssClasses = "w-full text-left px-2 py-1 rounded-sm my-1  hover: text-stone-200 hover: bg-stone-800";
 
-                    if(project.id === selectedProjectId){
+                    if (project.id === selectedProjectId) {
                         cssClasses += ' bg-stone-800 text-stone-200'
-                    }else{
+                    } else {
                         cssClasses += ' text-stone-400';
                     }
 
@@ -29,7 +29,7 @@ export default function ProjectsSideBar({
                         <li key={project.id}>
                             <button
                                 className={cssClasses}
-                                onClick={onSelectProject}
+                                onClick={()=>onSelectProject(project.id)}
                             >
                                 {project.title}
                             </button>
