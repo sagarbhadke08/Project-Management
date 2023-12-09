@@ -11,6 +11,6 @@ export default function Tasks(){
         <p className="text-stone-800 my-4">This project does not have any Task</p>
         <ul>
 
-        </ul>
+        </ul> 
     </section>
 }
