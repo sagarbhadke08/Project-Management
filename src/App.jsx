@@ -10,16 +10,39 @@ function App() {
 
     selectedProjectId: undefined,
     projects: [],
-    tasks:[]
+    tasks: [],
 
   });
 
-  function handleAddTask(){
+  function handleAddTask(text) {
+    setprojectsState((prevState) => {
 
+      const taskId = Math.random();
+
+      const newTask = {
+
+        text: text,
+        projectId: prevState.selectedProjectId,
+        id: taskId
+      };
+
+      return {
+        ...prevState,
+        tasks: [newTask, ...prevState.tasks]
+      };
+    });
   }
 
-  function handleDeleteTask(){
-    
+  function handleDeleteTask(id) {
+
+    setprojectsState((prevState) => {
+      return {
+        ...prevState,
+        // selectedProjectId: undefined, //* commented bcz it was re exe the component
+        tasks: prevState.tasks.filter((task) => task.id !== id),
+      };
+    });
+
   }
 
   function handleStartAddProject() {
@@ -86,7 +109,7 @@ function App() {
         selectedProjectId: undefined,
         projects: prevState.projects.filter(
           (project) => project.id !== prevState.selectedProjectId
-          ),
+        ),
       };
     });
 
@@ -95,8 +118,15 @@ function App() {
   // console.log(projectsState);
   const selectedProject = projectsState.projects.find(project => project.id === projectsState.selectedProjectId);
 
-  let content = <SelectedProject project={selectedProject} onDelete={handleDeleteProject} onAddTask={}/>;
-
+  let content = (
+    < SelectedProject
+      project={selectedProject}
+      onDelete={handleDeleteProject}
+      onAddTask={handleAddTask}
+      onDeleteTask={handleDeleteTask}
+      tasks={projectsState.tasks}
+    />
+  );
   if (projectsState.selectedProjectId === null) {
     content = <NewProject onAdd={handleAddProject} onCancel={handleCancelAddProject} />;
     //4/12/2023
@@ -113,6 +143,7 @@ function App() {
         onStartAddProject={handleStartAddProject}
         projects={projectsState.projects}
         onSelectProject={handleSelectProject}
+        selectedProjectId={projectsState.selectedProjectId}
       />
       {/* <NewProject/> */}
       {/* <NoProjectSelected onStartAddProject={handleStartAddProject} /> */}
